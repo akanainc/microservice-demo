@@ -12,7 +12,9 @@ client.js - a single invocation client that tests the RPC mechanism by putting t
 
 ## Execution
 
-The project includes a Procfile used by Heroku to define server.js as a worker dyno.  Define a Heroku app and use ```git push heroku master``` to deploy it, and then use ```heroku ps:scale web=0``` and ```heroku ps:scale worker=1``` to configure the app to run only the worker.
+The project includes a Procfile used by Heroku to define server.js as a worker dyno.  
+
+There's a nice turorial on how to use node in Heroku [here](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up).  In a nutshell you need to install the Heroku toolbelt, then run ```heroku login```, ```git clone```, cd into the cloned folder, ```heroku create``` to define a Heroku app,```git push heroku master``` to deploy it, and then use ```heroku ps:scale web=0``` and ```heroku ps:scale worker=1``` to configure the app to run only the worker.
 
 Alternatively you can simply run the worker process locally with ```node server.js```.  If you're going to run this locally you will need to install amqplib with ```npm install amqplib```.
 
