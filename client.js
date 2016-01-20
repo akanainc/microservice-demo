@@ -1,5 +1,11 @@
+// This client takes two params:
+//    1 - the function name to use in the RPC call
+//    2 - the string used as parameters to the function, make sure you quote the string if it has spaces or other special chars
+
 var amqp = require('amqplib/callback_api');
-var url = process.env.CLOUDAMQP_URL || "amqp://qlgmscns:kvcZM_64Xvkqzt1vawEwl3xOIwjdXPJQ@hyena.rmq.cloudamqp.com/qlgmscns";
+// Replace the amqp URL below with the URL from your AMQP system, e.g. CloudAMQP.
+// CLoudAMQP Users can find this URL on the instance detaiuls page from your Control Panel
+var url = process.env.CLOUDAMQP_URL || "amqp://user:password@host/exchange";
 
 amqp.connect(url, function(err, conn) {
   conn.createChannel(function(err, ch) {
@@ -19,6 +25,7 @@ amqp.connect(url, function(err, conn) {
 
       var headers = {'functionName': functionName};
       
+      // Replace 'demo' below with your queue name.  This must match your server queue name
       ch.sendToQueue('demo',
       new Buffer(inputString),
       { correlationId: corr, replyTo: q.queue, headers: headers });

@@ -1,10 +1,13 @@
 var akana = {};
-var url = process.env.CLOUDAMQP_URL || "amqp://qlgmscns:kvcZM_64Xvkqzt1vawEwl3xOIwjdXPJQ@hyena.rmq.cloudamqp.com/qlgmscns";
 var amqp = require('amqplib/callback_api');
+// Replace the amqp URL below with the URL from your AMQP system, e.g. CloudAMQP.
+// CLoudAMQP Users can find this URL on the instance detaiuls page from your Control Panel
+var url = process.env.CLOUDAMQP_URL || "amqp://user:password@host/exchange";
 
 // Consumer
 amqp.connect(url,function(err, conn) {
   conn.createChannel(function(err, ch) {
+    // Pick a queue name you want to use, demo is just for this example
     var q = 'demo';
 
     ch.assertQueue(q, {durable: false});
@@ -29,6 +32,8 @@ amqp.connect(url,function(err, conn) {
   });
 });
 
+// Write some functions you want to invoke
+// Make sure they are in the akana namespace as below
 akana.hello = function(n) {
   return "Hello: " + n + " from all of us here at Akana";
 };
