@@ -16,6 +16,6 @@ The project includes a Procfile used by Heroku to define server.js as a worker d
 
 There's a nice turorial on how to use node in Heroku [here](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up).  In a nutshell you need to install the Heroku toolbelt, then run ```heroku login```, ```git clone```, cd into the cloned folder, ```heroku create``` to define a Heroku app,```git push heroku master``` to deploy it, and then use ```heroku ps:scale web=0``` and ```heroku ps:scale worker=1``` to configure the app to run only the worker.
 
-Alternatively you can simply run the worker process locally with ```node server.js```.  If you're going to run this locally you will need to install amqplib with ```npm install amqplib```.
+Alternatively you can simply run the worker process locally with ```node server.js```.  If you're going to run this locally you will need to install amqplib with ```npm install amqplib```.  You'll also need to replace the AMQP URL with the URL of your AMQP service (very easy to use CloudAMQP if you don't have your own) in both the server and client code.  
 
 Test it using the client app, it takes two params, the function name and the function's input.  For example you can simply execute ```node client.js fibonaaci 10```.  That's that.
