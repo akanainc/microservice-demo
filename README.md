@@ -18,4 +18,4 @@ There's a nice turorial on how to use node in Heroku [here](https://devcenter.he
 
 Alternatively you can simply run the worker process locally with ```node server.js```.  If you're going to run this locally you will need to install amqplib with ```npm install amqplib```.
 
-Test it using the client app.  Change the function name header on line 19, and the message that's being sent, then execute ```node client.js fibonaaci 10```.  That's that.
+Test it using the client app, it takes two params, the function name and the function's input.  For example you can simply execute ```node client.js fibonaaci 10```.  That's that.
